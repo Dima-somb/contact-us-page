@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ContactService} from "../contact.service";
 
-import {noop} from "rxjs";
 
 @Component({
   selector: 'app-contact',
@@ -12,6 +11,9 @@ import {noop} from "rxjs";
 export class ContactComponent implements OnInit{
 
   contactForm!: FormGroup;
+
+  formSubmittedSuccessfully = false;
+
   constructor(
     private fb: FormBuilder,
     private contactService: ContactService
@@ -29,7 +31,7 @@ export class ContactComponent implements OnInit{
 
   onSubmit() {
     this.contactService.postMessage({...this.contactForm.value}).subscribe(
-      () => noop,
+      () => this.formSubmittedSuccessfully = true,
       (error) => {
         console.log(error)
       }
@@ -37,3 +39,9 @@ export class ContactComponent implements OnInit{
   }
 
 }
+
+
+// Thank you for your message!
+//
+// A confirmation email was sent to dmytro.kondratenko@sombrainc.com.
+

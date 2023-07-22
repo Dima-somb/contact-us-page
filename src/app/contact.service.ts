@@ -12,7 +12,7 @@ export class ContactService {
   constructor(private http: HttpClient) { }
 
   postMessage(data: any):Observable<void> {
-   return  this.http.post<void>('http://formsubmit.co/ajax/nata474747@gmail.com', data, {
+   return  this.http.post<void>('https://formsubmit.co/ajax/nata474747@gmail.com', data, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'

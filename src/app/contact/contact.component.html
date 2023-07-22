@@ -15,14 +15,20 @@
 
 <div class="container contact-form">
   <h1>Contact</h1>
-  <p>Fields marked with an <span class="text-danger">*</span> are required</p>
-  <div class="row">
+  <div *ngIf="formSubmittedSuccessfully" class="mt-4">
+    <p>Thank you for your message!</p>
+    <br>
+    <p>A confirmation email was sent to {{contactForm.get('email')?.value}}</p>
+  </div>
+
+  <p *ngIf="!formSubmittedSuccessfully">Fields marked with an <span class="text-danger">*</span> are required</p>
+  <div *ngIf="!formSubmittedSuccessfully" class="row">
     <div class="col-md-9">
       <div class="d-flex flex-column">
         <form class="p-4" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <div class="mb-3" >
             <label for="inputName" class="form-label">Name <span class="text-danger">*</span> </label>
-            <input class="form-control form-control-lg" formControlName="name" id="inputName" >
+            <input class="form-control form-control-lg" formControlName="name" id="inputName">
 
             <div *ngIf="contactForm.get('name')?.dirty || contactForm.get('name')?.touched" class="text-danger mt-2">
               <div *ngIf="contactForm.get('name')?.invalid" class="text-danger mt-2">
