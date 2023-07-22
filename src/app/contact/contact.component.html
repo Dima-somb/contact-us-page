@@ -21,18 +21,38 @@
       <div class="d-flex flex-column">
         <form class="p-4" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <div class="mb-3" >
-            <label for="inputName" class="form-label">Name</label>
+            <label for="inputName" class="form-label">Name <span class="text-danger">*</span> </label>
             <input class="form-control form-control-lg" formControlName="name" id="inputName" >
-          </div>
-          <div class="mb-3">
-            <label for="inputEmail" class="form-label">Email</label>
-            <input class="form-control form-control-lg" formControlName="email" id="inputEmail">
-          </div>
-          <div class="mb-3">
-            <label for="inputMessage" class="form-label">Message</label>
-            <input class="form-control form-control-lg" formControlName="message" id="inputMessage">
-          </div>
 
+            <div *ngIf="contactForm.get('name')?.dirty || contactForm.get('name')?.touched" class="text-danger mt-2">
+              <div *ngIf="contactForm.get('name')?.invalid" class="text-danger mt-2">
+                This is a required field.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Email <span class="text-danger">*</span> </label>
+            <input class="form-control form-control-lg" formControlName="email" id="inputEmail">
+
+            <div *ngIf="contactForm.get('email')?.dirty || contactForm.get('email')?.touched" class="text-danger mt-2">
+              <div *ngIf="contactForm.get('email')?.hasError('required')">
+                This is a required field.
+              </div>
+              <div *ngIf="contactForm?.get('email')?.hasError('email')">
+                Please enter a valid email address!
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="inputMessage" class="form-label">Message <span class="text-danger">*</span> </label>
+            <input class="form-control form-control-lg" formControlName="message" id="inputMessage">
+
+            <div *ngIf="contactForm.get('message')?.dirty || contactForm.get('message')?.touched" class="text-danger mt-2">
+              <div *ngIf="contactForm.get('message')?.hasError('required')">
+                This is a required field.
+              </div>
+            </div>
+          </div>
           <button type="submit" class="btn btn-primary btn-lg mt-3">Submit</button>
         </form>
       </div>
