@@ -1,0 +1,41 @@
+<ul class="nav justify-content-center bg-primary p-3">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Active</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#"></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#"></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled"></a>
+    </li>
+  </ul>
+
+<div class="container contact-form">
+  <h1>Contact</h1>
+  <p>Fields marked with an <span class="text-danger">*</span> are required</p>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="d-flex flex-column">
+        <form class="p-4" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3" >
+            <label for="inputName" class="form-label">Name</label>
+            <input class="form-control form-control-lg" formControlName="name" id="inputName" >
+          </div>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Email</label>
+            <input class="form-control form-control-lg" formControlName="email" id="inputEmail">
+          </div>
+          <div class="mb-3">
+            <label for="inputMessage" class="form-label">Message</label>
+            <input class="form-control form-control-lg" formControlName="message" id="inputMessage">
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg mt-3">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
