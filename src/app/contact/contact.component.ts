@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ContactService} from "../contact.service";
 
+import {noop} from "rxjs";
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -26,7 +28,12 @@ export class ContactComponent implements OnInit{
   }
 
   onSubmit() {
-    this.contactService.postMessage({...this.contactForm.value}).subscribe()
+    this.contactService.postMessage({...this.contactForm.value}).subscribe(
+      () => noop,
+      (error) => {
+        console.log(error)
+      }
+    )
   }
 
 }
